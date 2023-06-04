@@ -2,12 +2,12 @@ import Notiflix from 'notiflix';
 
 const form = document.querySelector('.form');
 form.addEventListener('submit', onSubmit);
+const delayInput = document.querySelector('input[name="delay"]');
+const stepInput = document.querySelector('input[name="step"]');
+const amountInput = document.querySelector('input[name="amount"]');
 
 function onSubmit(event) {
   event.preventDefault();
-  const delayInput = document.querySelector('input[name="delay"]');
-  const stepInput = document.querySelector('input[name="step"]');
-  const amountInput = document.querySelector('input[name="amount"]');
   let delay = Number(delayInput.value);
   const step = Number(stepInput.value);
   const amount = Number(amountInput.value);
