@@ -17,6 +17,25 @@ img {
   max-width: 100%;
 }
 
-/* .timer {
+.timer {
+  margin-top: 10px;
   display: flex;
-} */
+  gap: 4px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  border: solid 1px grey;
+  border-radius: 4px;
+  background: #d7d5d5;
+}
+
+.field .value {
+  font-size: 36px;
+}
+.field .label {
+  font-size: 12px;
+}
