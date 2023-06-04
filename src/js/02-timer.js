@@ -8,7 +8,9 @@ const daysEl = document.querySelector('span[data-days]');
 const hoursEl = document.querySelector('span[data-hours]');
 const minutesEl = document.querySelector('span[data-minutes]');
 const secondsEl = document.querySelector('span[data-seconds]');
+startBtn.addEventListener('click', onClick);
 let userDate = null;
+let timerId = null;
 startBtn.disabled = true;
 
 const options = {
@@ -26,6 +28,7 @@ const options = {
     }
   },
 };
+
 flatpickr(calendarEl, options);
 
 function convertMs(ms) {
@@ -46,8 +49,6 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
-let timerId = null;
 
 function updateDateTime() {
   const difference = userDate - Date.now();
@@ -72,4 +73,3 @@ function onClick() {
   updateDateTime();
   timerId = setInterval(() => updateDateTime(), 1000);
 }
-startBtn.addEventListener('click', onClick);
