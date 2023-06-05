@@ -52,13 +52,13 @@ function convertMs(ms) {
 
 function updateDateTime() {
   const difference = userDate - Date.now();
-  const timerOn = ({ days, hours, minutes, seconds } = convertMs(difference));
+  const { days, hours, minutes, seconds } = convertMs(difference);
 
-  updateClock(timerOn);
+  updateClock({ days, hours, minutes, seconds });
   clearTimer(difference);
 }
 
-function updateClock(timerOn) {
+function updateClock({ days, hours, minutes, seconds }) {
   daysEl.textContent = addLeadingZero(days);
   hoursEl.textContent = addLeadingZero(hours);
   minutesEl.textContent = addLeadingZero(minutes);
