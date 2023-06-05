@@ -18,8 +18,8 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
-    userDate = selectedDates[0].getTime();
+  onClose([selectedDates]) {
+    userDate = selectedDates;
     if (userDate < Date.now()) {
       Notiflix.Notify.failure('Please choose a date in the future');
       startBtn.disabled = true;
@@ -53,22 +53,25 @@ function convertMs(ms) {
 function updateDateTime() {
   const difference = userDate - Date.now();
   const { days, hours, minutes, seconds } = convertMs(difference);
+
   daysEl.textContent = addLeadingZero(days);
   hoursEl.textContent = addLeadingZero(hours);
   minutesEl.textContent = addLeadingZero(minutes);
   secondsEl.textContent = addLeadingZero(seconds);
-  if (difference <= 0) {
-    clearInterval(timerId);
-    daysEl.textContent = '00';
-    hoursEl.textContent = '00';
-    minutesEl.textContent = '00';
-    secondsEl.textContent = '00';
-    return;
-  }
+
+  clearTimer(difference);
 }
+
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
+
+function clearTimer(difference) {
+  if (difference < 1000 && userDate > 0) {
+    clearInterval(timerId);
+  }
+}
+
 function onClick() {
   updateDateTime();
   timerId = setInterval(() => updateDateTime(), 1000);
